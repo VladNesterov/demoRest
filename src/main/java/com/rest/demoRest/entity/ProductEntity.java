@@ -1,14 +1,19 @@
 package com.rest.demoRest.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "product")
 public class ProductEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @Column(name = "description")
@@ -17,15 +22,15 @@ public class ProductEntity {
     @Column(name = "name")
     String name;
 
-    @OneToMany(mappedBy = "structure")
+    @OneToMany
     List<StructureEntity> structureEntityList;
 
     @ManyToOne
-    @JoinColumn(name="cart_id")
-    private CartEntity cartEntity;
+    @JoinColumn(name = "cart_id")
+    private CartEntity cart;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private CategoryEntity categoryEntity;
 
 }

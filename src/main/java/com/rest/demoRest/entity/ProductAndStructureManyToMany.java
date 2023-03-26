@@ -1,9 +1,9 @@
 package com.rest.demoRest.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 
 @Entity
 @Getter
@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class ProductAndStructureManyToMany {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     Long id;
 

@@ -1,18 +1,20 @@
 package com.rest.demoRest.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 @Table(name = "structure")
 public class StructureEntity {
+
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "name", nullable = true)
+    @Column
     String name;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany
     List<ProductEntity> productEntityList;
 }

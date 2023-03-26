@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
-    @Query("SELECT qe FROM ProductEntity qe WHERE qe.id = :id")
-    List<ProductEntity> findAll(Long Id);
+//    @Query("SELECT qe FROM ProductEntity qe WHERE qe.id = :id")
+//    Optional<List<ProductEntity>> findAll(Long Id);
 
 }

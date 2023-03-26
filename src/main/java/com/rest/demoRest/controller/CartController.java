@@ -11,7 +11,6 @@ import java.util.List;
 @RequestMapping("shop/cart")
 public class CartController {
 
-
     @GetMapping("putProduct")
     public ResponseEntity<Void> putProduct(@RequestBody List<Long> productIds) {
         //creation logic
@@ -25,7 +24,6 @@ public class CartController {
     }
     @DeleteMapping
     public ResponseEntity<Void> removeProduct(@RequestBody List<Long> id) {
-        //retrieval logic
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

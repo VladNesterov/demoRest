@@ -1,21 +1,20 @@
 package com.rest.demoRest.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="cart")
 @Getter
 @Setter
+@Table(name = "cart")
 public class CartEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
     Long id;
 
-    @OneToMany(mappedBy="cart")
+    @OneToMany(mappedBy = "cart")
     private Set<ProductEntity> items;
 }

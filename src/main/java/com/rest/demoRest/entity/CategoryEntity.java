@@ -1,13 +1,14 @@
 package com.rest.demoRest.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 @Table(name = "category")
 public class CategoryEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @Column(name = "name")
