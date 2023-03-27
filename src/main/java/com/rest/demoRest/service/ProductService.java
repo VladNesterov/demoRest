@@ -1,6 +1,5 @@
 package com.rest.demoRest.service;
 
-import com.rest.demoRest.repository.ProductRepository;
 import io.swagger.v3.oas.annotations.servers.Server;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Server
 public class ProductService {
 
-    private final ProductRepository productRepository;
-
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+//    private final ProductRepository productRepository;
+//
+//    @Autowired
+//    public ProductService(ProductRepository productRepository) {
+//        this.productRepository = productRepository;
+//    }
 }

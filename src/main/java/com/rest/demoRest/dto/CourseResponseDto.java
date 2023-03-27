@@ -1,6 +1,6 @@
 package com.rest.demoRest.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import com.rest.demoRest.entity.Student;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +9,14 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ProductResponseDto implements Serializable {
+public class CourseResponseDto implements Serializable {
 
     Long id;
 
+    String name;
+
     String description;
 
-    String categoryName;
+    List<Student> student;
 
-    List<StructureDto> structureDtoList;
 }
