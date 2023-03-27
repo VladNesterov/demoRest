@@ -15,15 +15,15 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class StudentResponseDto implements Serializable {
 
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
-    String lastName;
+    private String lastName;
 
-    String email;
+    private String email;
 
-    Set<Course> course;
+    private Set<CourseResponseDto> course;
 
-    Set<Role> role;
+    private Set<RoleResponseDto> role;
 }

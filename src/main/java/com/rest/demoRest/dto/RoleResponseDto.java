@@ -7,10 +7,9 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleResponseDto {
 
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 }

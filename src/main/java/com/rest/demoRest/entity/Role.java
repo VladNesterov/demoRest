@@ -1,9 +1,9 @@
 package com.rest.demoRest.entity;
 
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity

@@ -1,17 +1,21 @@
 package com.rest.demoRest.dto;
 
-import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
-import com.rest.demoRest.entity.Course;
-import com.rest.demoRest.entity.Role;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Data
-@JsonSerializableSchema
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonSerialize
+@JsonDeserialize
 public class StudentRequestDto {
 
     @Pattern(message = "Must start with a capital letter",
@@ -27,7 +31,47 @@ public class StudentRequestDto {
     @Email(message = "Email isn't valid ")
     private String email;
 
-    private Set<Course> course;
+    private Set<Long> courseIds;
 
-    private Set<Role> role;
+    private Set<Long> roleIds;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Long> getCourseIds() {
+        return courseIds;
+    }
+
+    public void setCourseIds(Set<Long> courseIds) {
+        this.courseIds = courseIds;
+    }
+
+    public Set<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Set<Long> roleIds) {
+        this.roleIds = roleIds;
+    }
 }

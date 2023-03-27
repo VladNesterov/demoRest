@@ -2,6 +2,7 @@ package com.rest.demoRest.controller;
 
 import com.rest.demoRest.dto.CourseRequestDto;
 import com.rest.demoRest.dto.CourseResponseDto;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

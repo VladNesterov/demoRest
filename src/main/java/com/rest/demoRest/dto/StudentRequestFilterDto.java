@@ -1,31 +1,74 @@
 package com.rest.demoRest.dto;
 
-import com.rest.demoRest.entity.Course;
-import com.rest.demoRest.entity.Role;
 import jakarta.validation.constraints.Email;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.Set;
 
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StudentRequestFilterDto implements Serializable {
 
-    Set<Long> id;
+    private Set<Long> id;
 
-    Set<String> name;
+    private Set<String> name;
 
-    Set<String> lastName;
+    private Set<String> lastName;
 
     @Email
-    Set<String> email;
+    private Set<String> email;
 
-    Set<Course> course;
+    private Set<Long> courseIds;
 
-    Set<Role> role;
+    private Set<Long> roleIds;
+
+    public Set<Long> getId() {
+        return id;
+    }
+
+    public void setId(Set<Long> id) {
+        this.id = id;
+    }
+
+    public Set<String> getName() {
+        return name;
+    }
+
+    public void setName(Set<String> name) {
+        this.name = name;
+    }
+
+    public Set<String> getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(Set<String> lastName) {
+        this.lastName = lastName;
+    }
+
+    public Set<String> getEmail() {
+        return email;
+    }
+
+    public void setEmail(Set<String> email) {
+        this.email = email;
+    }
+
+    public Set<Long> getCourseIds() {
+        return courseIds;
+    }
+
+    public void setCourseIds(Set<Long> courseIds) {
+        this.courseIds = courseIds;
+    }
+
+    public Set<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Set<Long> roleIds) {
+        this.roleIds = roleIds;
+    }
 }

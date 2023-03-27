@@ -14,12 +14,12 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CourseResponseDto implements Serializable {
 
-    Long id;
+   private Long id;
 
-    String name;
+    private String name;
 
-    String description;
+    private String description;
 
-    List<Student> student;
+    private List<Student> student;
 
 }
