@@ -1,21 +1,17 @@
 package com.rest.demoRest.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import com.rest.demoRest.entity.Course;
 import com.rest.demoRest.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
 import java.util.Set;
 
 @Data
+@JsonSerializableSchema
 public class StudentRequestDto {
 
     @Pattern(message = "Must start with a capital letter",
