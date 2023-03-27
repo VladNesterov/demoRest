@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query("SELECT qe FROM ProductEntity qe WHERE qe.id = :id")
-    Optional<List<Student>> findAll(Long Id);
+//    @Query("SELECT qe FROM ProductEntity qe WHERE qe.id = :id")
+//    Optional<List<Student>> findAll(Long Id);
 
 }

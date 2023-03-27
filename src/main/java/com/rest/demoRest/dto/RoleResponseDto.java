@@ -1,13 +1,16 @@
 package com.rest.demoRest.dto;
 
-import jakarta.annotation.Nullable;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleResponseDto {
 
     Long id;
+
     String name;
 }

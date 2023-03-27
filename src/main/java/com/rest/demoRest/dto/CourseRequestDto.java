@@ -1,17 +1,18 @@
 package com.rest.demoRest.dto;
 
 import com.rest.demoRest.entity.Student;
-import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CourseRequestDto implements Serializable {
-
 
     String name;
 

@@ -14,7 +14,7 @@ public class CustomGlobalExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseError handle(MethodArgumentNotValidException exception) {
-        log.error(exception.getMessage(), exception);
+//        log.error(exception.getMessage(), exception);
         return new ResponseError(exception.getMessage(), HttpStatus.BAD_REQUEST);
     } // error handle for @Valid
 
