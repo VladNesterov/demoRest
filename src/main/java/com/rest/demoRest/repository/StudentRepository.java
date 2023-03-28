@@ -12,18 +12,7 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-
-    @Query("select s ")
+    @Query("SELECT s.*, r.id as roles_id, r.name as roles_name " +
+                    "FROM  student_role sr join student s on sr.student_id=s.id join roles r on r.id =sr.role_id where role_id in (:roleIds)")
     List<Student> getStudentsByRole(List<Long> roleIds);
 }
-
-//    @Query(
-//            value = "SELECT s.id,s.email ,s.\"name\" ,s.last_name,r.id,r.\"name\"  \n" +
-//                    "FROM  student s\n" +
-//                    "    join student_role sr on s.id = sr.student_id \n" +
-//                    "    join roles r on r.id = sr.role_id \n" +
-//                    "    where r.id  in (102,103,104)\n" +
-//                    "   ",
-//            nativeQuery = true)
-//    List<Student> getStudentsByRole(List<Long> roleIds);
-//}
