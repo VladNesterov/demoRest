@@ -2,6 +2,7 @@ package com.rest.demoRest.repository;
 
 
 import com.rest.demoRest.entity.Student;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     List<Student> getStudentsByRole(List<Long> roleIds);
+
+//    JPQL working
+//    @Query("select s from Student s join s.role r left join  s.course c where r.id in (:roleIds)")
+//    List<Student> getStudentsByRole(List<Long> roleIds);
 }
