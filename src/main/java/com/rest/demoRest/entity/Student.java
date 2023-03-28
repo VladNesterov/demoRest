@@ -3,6 +3,7 @@ package com.rest.demoRest.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
@@ -12,6 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NamedEntityGraph(
+        name = "student-entity-graph",
+        attributeNodes = {
+                @NamedAttributeNode("role"),
+        }
+)
 public class Student {
 
     @Id

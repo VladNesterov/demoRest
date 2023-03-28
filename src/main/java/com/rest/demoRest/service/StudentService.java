@@ -1,16 +1,14 @@
 package com.rest.demoRest.service;
 
 import com.rest.demoRest.dto.StudentRequestDto;
-import com.rest.demoRest.dto.StudentRequestFilterDto;
 import com.rest.demoRest.dto.StudentResponseDto;
 import com.rest.demoRest.entity.Student;
 import com.rest.demoRest.mapper.StudentMapper;
-import com.rest.demoRest.repository.CourseRepository;
-import com.rest.demoRest.repository.RoleRepository;
 import com.rest.demoRest.repository.StudentRepository;
-import io.swagger.v3.oas.annotations.servers.Server;
-import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
+import lombok.Data;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@Data
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    private final CourseRepository courseRepository;
-    private final RoleRepository roleRepository;
     private final StudentMapper mapperStudent;
 
     @Transactional
@@ -43,8 +39,13 @@ public class StudentService {
         studentRepository.deleteAllById(ids);
     }
 
-    public List<StudentResponseDto> getStudentsByFilter(StudentRequestFilterDto studentRequestFilterDto) {
-        return null;
+    public Page<StudentResponseDto> getAllStudent(Pageable pageable) {
+        List<StudentResponseDto> students = studentRepository.findAll(pageable).stream().map(mapperStudent::studentToStudentResponseDto).toList();
+        return new PageImpl<>(students, pageable, students.size());
+    }
+
+    public List<StudentResponseDto> getStudentByRole(List<Long> roleIds) {
+        return studentRepository.getStudentsByRole(roleIds).stream().map(mapperStudent::studentToStudentResponseDto).toList();
     }
 
 }

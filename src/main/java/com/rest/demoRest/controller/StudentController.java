@@ -7,6 +7,7 @@ import com.rest.demoRest.service.StudentService;
 import com.rest.demoRest.validate.ValidateRequestBodyStudentList;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @RestController
 @RequestMapping("shop/student")
-@AllArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
@@ -31,26 +32,21 @@ public class StudentController {
 
     @PutMapping("change")
     public StudentResponseDto changeStudent(@RequestParam Long id, @Valid @RequestBody StudentRequestDto role) {
-        //creation logic
         return studentService.updateStudents(id, role);
     }
 
-    @PutMapping("change")
-    public Page<StudentResponseDto> getAllStudent(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
-                                                  @RequestParam(value = "limit", defaultValue = "10") Integer limit, Pageable page) {
-        //creation logic
-        return null;
+    @GetMapping("getStudents")
+    public Page<StudentResponseDto> getAllStudent(Pageable page) {
+        return studentService.getAllStudent(page);
     }
 
     @GetMapping("getByFilter")
-    public ResponseEntity<List<StudentResponseDto>> getStudentByRole(List<Long> roleIds) {
-        //retrieval logic
-        return ResponseEntity.ok(new ArrayList<>());
+    public List<StudentResponseDto> getStudentByRole(@RequestParam List<Long> roleIds) {
+        return studentService.getStudentByRole(roleIds);
     }
 
     @DeleteMapping
     public void removeStudent(@Valid @RequestBody List<Long> ids) {
-        //retrieval logic
         studentService.removeStudents(ids);
     }
 }

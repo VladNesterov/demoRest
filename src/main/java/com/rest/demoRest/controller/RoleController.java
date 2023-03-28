@@ -2,7 +2,13 @@ package com.rest.demoRest.controller;
 
 import com.rest.demoRest.dto.RoleRequestDto;
 import com.rest.demoRest.dto.RoleResponseDto;
+import com.rest.demoRest.service.RoleService;
+import com.rest.demoRest.service.StudentService;
 import jakarta.validation.Valid;
+import lombok.Data;
+import org.hibernate.validator.internal.metadata.aggregated.rule.ReturnValueMayOnlyBeMarkedOnceAsCascadedPerHierarchyLine;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,37 +18,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("shop/role")
+@Data
 public class RoleController {
 
-    @PutMapping("create")
-    public ResponseEntity<List<RoleResponseDto>> createRole(@Valid @RequestBody List<RoleRequestDto> roles) {
-        //creation logic
-        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.CREATED);
-    }
+    private final RoleService roleService;
 
-    @PutMapping("change")
-    public ResponseEntity<Void> changeRole(@PathVariable Long id, @Valid @RequestBody RoleRequestDto role) {
-        //creation logic
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PutMapping("create")
+    public List<RoleResponseDto> createRole(@Valid @RequestBody List<RoleRequestDto> roles) {
+        return roleService.saveRole(roles);
     }
 
     @GetMapping("getByIds")
-    public ResponseEntity<List<RoleResponseDto>> getRoleByIds(@RequestBody List<Long> role) {
-        //retrieval logic
-        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.CREATED);
+    public List<RoleResponseDto> getRoleByIds(@RequestBody List<Long> role, Pageable pageable) {
+        return roleService.getRoleByIds(role);
     }
 
-//    @GetMapping("getByFilter")
-//    public ResponseEntity<Map<String, ProductResponseDto>> getProductsByFilter(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
-//                                                                                   @RequestParam(value = "limit", defaultValue = "10") Integer limit,
-//                                                                                   @Valid @RequestBody ProductFilterDto productFilterDto) {
-//        //retrieval logic
-//        return ResponseEntity.ok(new HashMap<>());
-//    }
+    @GetMapping("getAll")
+    public Page<RoleResponseDto> getRoles(Pageable page) {
+        return roleService.getAllRole(page);
+    }
 
     @DeleteMapping
-    public ResponseEntity<Void> removeRole(@Valid @RequestBody List<Long> id) {
-        //retrieval logic
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    public void removeRole(@Valid @RequestBody List<Long> id) {
+        roleService.removeRole(id);
     }
 }
