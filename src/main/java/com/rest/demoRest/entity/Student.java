@@ -13,12 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@NamedEntityGraph(
-        name = "student-entity-graph",
-        attributeNodes = {
-                @NamedAttributeNode("role"),
-        }
-)
+
 public class Student {
 
     @Id
