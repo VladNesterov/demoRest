@@ -3,9 +3,10 @@ package com.rest.demoRest.controller;
 import com.rest.demoRest.dto.StudentRequestDto;
 import com.rest.demoRest.dto.StudentRequestFilterDto;
 import com.rest.demoRest.dto.StudentResponseDto;
+import com.rest.demoRest.service.StudentService;
+import com.rest.demoRest.validate.ValidateRequestBodyStudentList;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,32 +15,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping("shop/student")
+@AllArgsConstructor
 public class StudentController {
 
+    private final StudentService studentService;
+
     @PutMapping("create")
-    public ResponseEntity<List<StudentResponseDto>> createStudent(@Valid @RequestBody List<StudentRequestDto> roles) {
-        //creation logic
-        return null;
+    public List<StudentResponseDto> createStudent(@Valid @RequestBody
+                                                  ValidateRequestBodyStudentList<@Valid StudentRequestDto> student) {
+        return studentService.saveStudents(student.getRequestBody());
+
     }
 
     @PutMapping("change")
-    public ResponseEntity<StudentResponseDto> changeStudent(@PathVariable Long id, @Valid @RequestBody StudentRequestDto role) {
+    public StudentResponseDto changeStudent(@RequestParam Long id, @Valid @RequestBody StudentRequestDto role) {
         //creation logic
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return studentService.updateStudents(id, role);
     }
 
 
     @GetMapping("getByFilter")
     public ResponseEntity<List<StudentResponseDto>> getProductsByFilter(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
-                                                                                   @RequestParam(value = "limit", defaultValue = "10") Integer limit,
-                                                                                   @Valid @RequestBody StudentRequestFilterDto studentRequestDto) {
+                                                                        @RequestParam(value = "limit", defaultValue = "10") Integer limit,
+                                                                        @Valid @RequestBody StudentRequestFilterDto studentRequestDto) {
         //retrieval logic
         return ResponseEntity.ok(new ArrayList<>());
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> removeStudent(@Valid @RequestBody List<Long> id) {
+    public void removeStudent(@Valid @RequestBody List<Long> ids) {
         //retrieval logic
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        studentService.removeStudents(ids);
     }
 }

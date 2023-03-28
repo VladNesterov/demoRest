@@ -20,6 +20,6 @@ public class CourseResponseDto implements Serializable {
 
     private String description;
 
-    private List<Student> student;
+    private List<StudentDto> student;
 
 }

@@ -1,6 +1,7 @@
 package com.rest.demoRest.entity;
 
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import jakarta.persistence.*;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 public class Role {
 
     @Id
