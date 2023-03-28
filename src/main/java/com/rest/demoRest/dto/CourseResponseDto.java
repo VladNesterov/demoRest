@@ -1,20 +1,16 @@
 package com.rest.demoRest.dto;
 
-import com.rest.demoRest.entity.Student;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class CourseResponseDto implements Serializable {
+@Data
+@EqualsAndHashCode(of = "id")
+public class CourseResponseDto {
 
-   private Long id;
+    private Long id;
 
     private String name;
 

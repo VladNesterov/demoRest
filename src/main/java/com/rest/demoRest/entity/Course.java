@@ -1,9 +1,7 @@
 package com.rest.demoRest.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
@@ -11,7 +9,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "course")
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Course {
 

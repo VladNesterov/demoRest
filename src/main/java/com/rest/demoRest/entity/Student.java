@@ -1,27 +1,32 @@
 package com.rest.demoRest.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
 @Entity
-@Data
-@Table(name = "student")
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Student {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
-    private String name;
+    String name;
 
-    private String lastName;
+    String lastName;
 
-    private String email;
+    String email;
 
     @OneToMany
-    private List<Course> course;
+    List<Course> course;
 
     @ManyToMany
-    private List<Role> role;
+    List<Role> role;
 }

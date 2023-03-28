@@ -1,12 +1,10 @@
 package com.rest.demoRest.dto;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
+@EqualsAndHashCode(of = "id")
 public class RoleResponseDto {
 
     private Long id;

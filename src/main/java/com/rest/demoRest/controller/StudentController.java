@@ -7,6 +7,8 @@ import com.rest.demoRest.service.StudentService;
 import com.rest.demoRest.validate.ValidateRequestBodyStudentList;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,11 +35,15 @@ public class StudentController {
         return studentService.updateStudents(id, role);
     }
 
+    @PutMapping("change")
+    public Page<StudentResponseDto> getAllStudent(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
+                                                  @RequestParam(value = "limit", defaultValue = "10") Integer limit, Pageable page) {
+        //creation logic
+        return null;
+    }
 
     @GetMapping("getByFilter")
-    public ResponseEntity<List<StudentResponseDto>> getProductsByFilter(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
-                                                                        @RequestParam(value = "limit", defaultValue = "10") Integer limit,
-                                                                        @Valid @RequestBody StudentRequestFilterDto studentRequestDto) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentByRole(List<Long> roleIds) {
         //retrieval logic
         return ResponseEntity.ok(new ArrayList<>());
     }

@@ -1,15 +1,17 @@
 package com.rest.demoRest.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of="id")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role {
 
     @Id
