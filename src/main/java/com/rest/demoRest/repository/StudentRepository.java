@@ -16,37 +16,13 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @EntityGraph(value = "student-entity-graph-role")
 
     List<Student> getStudentsByRole(List<Long> roleIds);
+
+//        Native Query working
 //
-//    same logic less query
-//
-//    @Query(value = "select stud.*, rol.*\n" +
-//            "from student s\n" +
-//            "left join student_role sr on s.id = sr.student_id\n" +
-//            "left join roles r on sr.role_id = r.id\n" +
-//            "left join lateral\n" +
-//            "(\n" +
-//            "select sr2.role_id, sr2.student_id\n" +
-//            "from  student_role sr2\n" +
-//            "where sr2.student_id = s.id\n" +
-//            ") rolesIds on true\n" +
-//            "left join lateral\n" +
-//            "(\n" +
-//            "   select *\n" +
-//            "    from student s3\n" +
-//            "    where s3.id = rolesIds.student_id\n" +
-//            ") stud on true\n" +
-//            "left join lateral\n" +
-//            "(\n" +
-//            "select r3.id as role_id, r3.name as role_name\n" +
-//            "from roles r3\n" +
-//            "where r3.id = rolesIds.role_id\n" +
-//            ") rol on true\n" +
-//            "where r.id in (103)\n",
+//     @Query(value = "SELECT s.*, r.id as roles_id, r.name as roles_name " +
+//            "FROM  student_role sr join student s on sr.student_id=s.id join  roles r on r.id =sr.role_id where role_id in (:roleIds)",
 //            nativeQuery = true
 //    )
 //    List<Student> getStudentsByRole(List<Long> roleIds);
 
-//    JPQL working
-//    @Query("select s from Student s join s.role r left join  s.course c where r.id in (:roleIds)")
-//    List<Student> getStudentsByRole(List<Long> roleIds);
 }
