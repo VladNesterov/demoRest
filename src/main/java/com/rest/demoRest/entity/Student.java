@@ -14,22 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@NamedEntityGraphs(value = {@NamedEntityGraph(
-//        name = "student-entity-graph-course",
-//        attributeNodes = {
-//                @NamedAttributeNode("course"),
-//                @NamedAttributeNode("role")
-//        }
-//
-//), @NamedEntityGraph(
-//        name = "student-entity-graph-role",
-//        attributeNodes = {
-//                @NamedAttributeNode("course"),
-//                @NamedAttributeNode("role")
-//        }
-//
-//)}
-//)
 @NamedEntityGraph(
         name = "student-entity-graph-role",
         attributeNodes = {
