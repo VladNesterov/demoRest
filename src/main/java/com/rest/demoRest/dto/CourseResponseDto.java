@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -16,6 +17,6 @@ public class CourseResponseDto {
 
     private String description;
 
-    private List<StudentDto> student;
+    private Set<StudentDto> student;
 
 }

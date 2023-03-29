@@ -3,16 +3,16 @@ package com.rest.demoRest.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 
 @Data
-public class CourseRequestDto implements Serializable {
+public class CourseRequestDto {
 
     private String name;
 
     private String description;
 
-    private List<Long> studentIds;
+    private Set<Long> studentIds;
 
 }

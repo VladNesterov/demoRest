@@ -1,19 +1,15 @@
 package com.rest.demoRest.controller;
 
 import com.rest.demoRest.dto.StudentRequestDto;
-import com.rest.demoRest.dto.StudentRequestFilterDto;
 import com.rest.demoRest.dto.StudentResponseDto;
 import com.rest.demoRest.service.StudentService;
 import com.rest.demoRest.validate.ValidateRequestBodyStudentList;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

@@ -3,17 +3,12 @@ package com.rest.demoRest.controller;
 import com.rest.demoRest.dto.RoleRequestDto;
 import com.rest.demoRest.dto.RoleResponseDto;
 import com.rest.demoRest.service.RoleService;
-import com.rest.demoRest.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.Data;
-import org.hibernate.validator.internal.metadata.aggregated.rule.ReturnValueMayOnlyBeMarkedOnceAsCascadedPerHierarchyLine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +24,7 @@ public class RoleController {
     }
 
     @GetMapping("getByIds")
-    public List<RoleResponseDto> getRoleByIds(@RequestBody List<Long> role, Pageable pageable) {
+    public List<RoleResponseDto> getRoleByIds(@RequestParam List<Long> role) {
         return roleService.getRoleByIds(role);
     }
 

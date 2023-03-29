@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -26,7 +28,7 @@ public class RoleService {
     @Transactional
     public List<RoleResponseDto> saveRole(List<RoleRequestDto> studentRequestDto) {
         List<Role> role = studentRequestDto.stream().map(mapperRole::roleRequestDtoToRole).collect(Collectors.toList());
-        return roleRepository.saveAll(role).stream().map(mapperRole::roleToRoleResponseDto).collect(Collectors.toList());
+        return new HashSet<>(roleRepository.saveAll(role)).stream().map(mapperRole::roleToRoleResponseDto).collect(Collectors.toList());
     }
 
 

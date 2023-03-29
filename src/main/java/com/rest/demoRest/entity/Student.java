@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -13,7 +14,30 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+//@NamedEntityGraphs(value = {@NamedEntityGraph(
+//        name = "student-entity-graph-course",
+//        attributeNodes = {
+//                @NamedAttributeNode("course"),
+//                @NamedAttributeNode("role")
+//        }
+//
+//), @NamedEntityGraph(
+//        name = "student-entity-graph-role",
+//        attributeNodes = {
+//                @NamedAttributeNode("course"),
+//                @NamedAttributeNode("role")
+//        }
+//
+//)}
+//)
+@NamedEntityGraph(
+        name = "student-entity-graph-role",
+        attributeNodes = {
+                @NamedAttributeNode("role"),
+                @NamedAttributeNode("course")
+        }
 
+)
 public class Student {
 
     @Id
@@ -27,8 +51,14 @@ public class Student {
     String email;
 
     @OneToMany
-    List<Course> course;
+    Set<Course> course;
 
     @ManyToMany
-    List<Role> role;
+    @JoinTable(
+            name = "student_role",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    Set<Role> role;
+
 }

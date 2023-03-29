@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +27,7 @@ public class CourseService {
     @Transactional
     public List<CourseResponseDto> saveCourse(List<CourseRequestDto> courseRequestDtos) {
         List<Course> course = courseRequestDtos.stream().map(mapperCourse::courseRequestDtoToCourse).toList();
-        return courseRepository.saveAll(course).stream().map(mapperCourse::courseToCourseResponseDto).collect(Collectors.toList());
+        return new HashSet<>(courseRepository.saveAll(course)).stream().map(mapperCourse::courseToCourseResponseDto).collect(Collectors.toList());
     }
 
     @Transactional
@@ -40,7 +42,7 @@ public class CourseService {
     }
 
     public List<CourseResponseDto> getCourseIds(List<Long> ids) {
-        return courseRepository.findAllById(ids).stream().map(mapperCourse::courseToCourseResponseDto).collect(Collectors.toList());
+        return new HashSet<>(courseRepository.findAllById(ids)).stream().map(mapperCourse::courseToCourseResponseDto).collect(Collectors.toList());
     }
 
     @Transactional

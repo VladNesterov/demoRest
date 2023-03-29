@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class UtilTyMapper {
@@ -24,28 +26,28 @@ public class UtilTyMapper {
     private static StudentRepository studentRepository;
 
     @Named("getCoursesById")
-    public static List<Course> getCoursesById(StudentRequestDto studentRequestDto) {
+    public static Set<Course> getCoursesById(StudentRequestDto studentRequestDto) {
         if (CollectionUtils.isEmpty(studentRequestDto.getRoleIds())) {
             return null;
         }
-        return courseRepository.findAllById(studentRequestDto.getCourseIds());
+        return new HashSet<>(courseRepository.findAllById(studentRequestDto.getCourseIds()));
     }
 
     @Named("getRolesById")
-    public static List<Role> getRolesById(StudentRequestDto studentRequestDto) {
+    public static Set<Role> getRolesById(StudentRequestDto studentRequestDto) {
         if (CollectionUtils.isEmpty(studentRequestDto.getRoleIds())) {
             return null;
         }
-        return roleRepository.findAllById(studentRequestDto.getRoleIds());
+        return new HashSet<>(roleRepository.findAllById(studentRequestDto.getRoleIds()));
 
     }
 
     @Named("getStudentById")
-    public static List<Student> getStudentById(CourseRequestDto studentRequestDto) {
+    public static Set<Student> getStudentById(CourseRequestDto studentRequestDto) {
         if (CollectionUtils.isEmpty(studentRequestDto.getStudentIds())) {
             return null;
         }
-        return studentRepository.findAllById(studentRequestDto.getStudentIds());
+        return new HashSet<>(studentRepository.findAllById(studentRequestDto.getStudentIds()));
     }
 
     @Autowired

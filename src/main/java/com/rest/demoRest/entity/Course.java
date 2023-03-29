@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,7 +23,7 @@ public class Course {
     String description;
 
     @OneToMany
-    List<Student> student;
+    Set<Student> student;
 
 }
 

@@ -3,11 +3,8 @@ package com.rest.demoRest.controller;
 import com.rest.demoRest.dto.CourseRequestDto;
 import com.rest.demoRest.dto.CourseResponseDto;
 import com.rest.demoRest.service.CourseService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import lombok.Data;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,19 +17,18 @@ public class CourseController {
     private final CourseService courseService;
 
     @PutMapping("create")
-    public ResponseEntity<List<CourseResponseDto>> createCourse(@Valid @RequestBody List<CourseRequestDto> course) {
-        return new ResponseEntity<>(courseService.saveCourse(course), HttpStatus.CREATED);
+    public List<CourseResponseDto> createCourse(@RequestBody List<CourseRequestDto> course) {
+        return courseService.saveCourse(course);
     }
 
     @PutMapping("change")
-    public ResponseEntity<CourseResponseDto> changeCourse(@PathVariable Long id, @Valid @RequestBody CourseRequestDto course) {
-        return new ResponseEntity<>(courseService.updateStudents(id, course), HttpStatus.CREATED);
+    public CourseResponseDto changeCourse(@RequestParam Long id, @RequestBody CourseRequestDto course) {
+        return courseService.updateStudents(id, course);
     }
 
     @GetMapping("getByIds")
-    public ResponseEntity<List<CourseResponseDto>> getCourseById(@PathVariable List<Long> ids) {
-
-        return ResponseEntity.ok(courseService.getCourseIds(ids));
+    public List<CourseResponseDto> getCourseById(@RequestParam List<Long> ids) {
+        return courseService.getCourseIds(ids);
     }
 
     @DeleteMapping
